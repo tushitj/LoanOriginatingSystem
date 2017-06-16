@@ -1,10 +1,8 @@
 
 public class DedupeCalc {
-
 	final int MIN_Age=18;
 	final int MID_AGE=40;
 	final int ADULT_AGE=55;
-	
 	final int LESS_EXP=5;
 	final int MID_EXP=10;
 	static double score=0;
@@ -17,9 +15,6 @@ public class DedupeCalc {
 	double professionScore=0;
 	boolean correct;
 	static boolean loanCheck;
-	
-
-	
 	public double professionCheck(Person p1){
 		System.out.println("in prof blck");
 		String exp1=p1.getExperience();
@@ -58,11 +53,7 @@ public class DedupeCalc {
 				return professionScore;
 			}
 		}
-		
-		
-		
 	}
-	
 	public double nationCheck(Person p1){
 		if(p1.getNationality()!="Indian"){
 			nationScore=nationScore-1.0;
@@ -71,9 +62,7 @@ public class DedupeCalc {
 		}
 		System.out.println("nation score  is "+nationScore);
 		return nationScore;
-		
 	}
-	
 	public double genderCheck(Person p1){
 		if(p1.getGender()=="Female"){
 			System.out.println("female scre");
@@ -84,31 +73,23 @@ public class DedupeCalc {
 		System.out.println("gender else score ois "+genderScore);
 		return genderScore;
 	}
-	
 	public double statusCheck(Person p1){
-
 		if(p1.getCreditStatus()== "Single"){
 			statusScore=statusScore+0.5;
 			System.out.println( "staus sing score is "+statusScore);
-			
 			return statusScore;
-			
-			
 		}
 		else if(p1.getCreditStatus()== "Firm"){
 			statusScore=statusScore+1.0;
-			
 			System.out.println("status firm score is "+statusScore);
 			return statusScore;
 		}
 		else{
 			statusScore=statusScore+1.5;
-		
 			System.out.println(" corp status score is "+statusScore);
 			return statusScore;
 		}
 	}
-	
 	public double ageCheck(Person p1){
 		String age1=p1.getAge();
 		int age=Integer.parseInt(age1);
@@ -117,8 +98,6 @@ public class DedupeCalc {
 			System.out.println("age score is "+ageScore);
 			System.out.println("min age scre");
 			return ageScore;
-			
-			
 		}
 		else if(age>MIN_Age && age<MID_AGE){
 			ageScore=ageScore+2;
@@ -133,7 +112,6 @@ public class DedupeCalc {
 			return ageScore;
 		}
 	}
-	
 	public double tenureCheck(Person p1){
 		int tenure=Integer.parseInt(p1.getLoanTenure());
 		if(tenure<20){
@@ -161,71 +139,57 @@ public class DedupeCalc {
 			return tenureScore;
 		}
 	}
-
 	public boolean loanTypeCheck(Person p1){
 		System.out.println("checking");
 		int amt=Integer.parseInt(p1.getLoanAmt());
 		int value=Integer.parseInt(p1.getLoanValue());
 		if(p1.getLoanType()=="Home Loan"){
-		System.out.println("in home loan blck");
-		if (amt<=((0.85)*value)){
-			System.out.println("in home if");
-			loanCheck=true;
-			
-			
-		}
-		else{
-			System.out.println("in home else");
-			loanCheck=false;
-			
-		}
-		return loanCheck;	
-}
-	else if(p1.getLoanType()=="Car Loan"){
-		System.out.println("in car loan blk");
-		if (amt<=((0.60)*value)){
-			System.out.println("in car if");
-			loanCheck=true;
-			
-		}
-		else{
-			System.out.println("in car else");
-			loanCheck=false;
+			System.out.println("in home loan blck");
+			if (amt<=((0.85)*value)){
+				System.out.println("in home if");
+				loanCheck=true;
 			}
-		return loanCheck;
-	}
+			else{
+				System.out.println("in home else");
+				loanCheck=false;
+			}
+			return loanCheck;	
+		}
+		else if(p1.getLoanType()=="Car Loan"){
+			System.out.println("in car loan blk");
+			if (amt<=((0.60)*value)){
+				System.out.println("in car if");
+				loanCheck=true;
+			}
+			else{
+				System.out.println("in car else");
+				loanCheck=false;
+			}
+			return loanCheck;
+		}
 		System.out.println("failure blk");
 		return loanCheck;
-
 	}
 	public boolean valCheck(String val1,String val2,Person p1){
 		int amt=Integer.parseInt(val1);
 		int value=Integer.parseInt(val2);
 		if(value<amt){
 			System.out.println("in value<amt");
-			
 			correct=false;
 			return correct;
-			
 		}
 		else{
-		
-	System.out.println("in amt<val");
+			System.out.println("in amt<val");
 			correct=true;
 			return correct;
 		}
-		
 	}
-	
 	public double liabScore(Person p1){
-		
 		int liability=Integer.parseInt(p1.getLiability());
 		int asset=Integer.parseInt(p1.getAssets());
-		
 		double checkVal=0.7*(asset);
 		double checkVal1=0.4*(asset);
 		if(liability>checkVal){
-			
 			liabScore=liabScore+0.8;
 			System.out.println("liab score is "+liabScore);
 			return score;
@@ -238,8 +202,7 @@ public class DedupeCalc {
 		else{
 			liabScore=liabScore+2.1;
 			System.out.println("liab score is "+liabScore);
-		return liabScore;
+			return liabScore;
+		}
 	}
-	}
-
 }
